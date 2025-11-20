@@ -9,8 +9,6 @@
 import sql from 'mssql';
 import { config } from '@/config';
 
-const projectSchema = `project_${process.env.PROJECT_ID}`;
-
 const poolConfig: sql.config = {
   server: config.database.server,
   port: config.database.port,
@@ -21,7 +19,6 @@ const poolConfig: sql.config = {
     encrypt: config.database.options.encrypt,
     trustServerCertificate: config.database.options.trustServerCertificate,
     enableArithAbort: true,
-    defaultSchema: projectSchema,
   },
 };
 

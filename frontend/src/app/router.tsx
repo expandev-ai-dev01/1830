@@ -6,6 +6,12 @@ import { LoadingSpinner } from '@/core/components/LoadingSpinner';
 const HomePage = lazy(() => import('@/pages/Home'));
 const NotFoundPage = lazy(() => import('@/pages/NotFound'));
 
+// Purchase Pages
+const PurchaseListPage = lazy(() => import('@/pages/Purchase/PurchaseList'));
+const PurchaseCreatePage = lazy(() => import('@/pages/Purchase/PurchaseCreate'));
+const PurchaseEditPage = lazy(() => import('@/pages/Purchase/PurchaseEdit'));
+const PurchaseDetailPage = lazy(() => import('@/pages/Purchase/PurchaseDetail'));
+
 /**
  * @router AppRouter
  * @summary Main application routing configuration with lazy loading
@@ -25,6 +31,43 @@ export const router = createBrowserRouter([
             <HomePage />
           </Suspense>
         ),
+      },
+      {
+        path: 'purchases',
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <PurchaseListPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'new',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <PurchaseCreatePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: ':id',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <PurchaseDetailPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: ':id/edit',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <PurchaseEditPage />
+              </Suspense>
+            ),
+          },
+        ],
       },
       {
         path: '*',

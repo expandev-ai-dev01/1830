@@ -7,7 +7,10 @@
  */
 
 import { Router } from 'express';
+import purchaseRoutes from './purchaseRoutes';
 
 const router = Router();
+
+router.use('/purchase', purchaseRoutes);
 
 export default router;
